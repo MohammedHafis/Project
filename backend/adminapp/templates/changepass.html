@@ -1,0 +1,35 @@
+{% extends 'layout/app-layout.html'%}
+{% block 'content' %}
+<div class="container mt-4 d-flex flex-column align-items-center">
+    <div class="text-center mb-4">
+        <h1 class="mb-4 text-dark">Change Password</h1>
+    </div>
+    <div class="form-wrapper" style="max-width: 400px; width: 100%;">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} mt-2">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+        <form method="POST" action="{% url 'change_password' %}" class="card shadow p-4">
+            {% csrf_token %}
+            
+            <div class="mb-3">
+                <label for="Pass1" class="form-label">Current Password:</label>
+                <input type="Password" class="form-control" id="Pass1" name="oldPassword" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="passnew" class="form-label">New Password:</label>
+                <input type="Password" class="form-control" id="passnew" name="password" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="passnew1" class="form-label">Confirm New Password:</label>
+                <input type="Password" class="form-control" id="passnew1" name="passnew1" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

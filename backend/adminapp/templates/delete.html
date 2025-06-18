@@ -1,0 +1,20 @@
+{% extends 'layout/app-layout.html' %}
+{% block 'content' %}
+<div class="container mt-5 d-flex justify-content-center">
+    <div class="card shadow p-4" style="width: 400px;">
+        <div class="card-body text-center">
+            <h3 class="card-title text-danger mb-3">Confirm Deletion</h3>
+            <p class="card-text text-dark mb-4">
+                Are you sure you want to delete <strong class="text-dark">"{{ movie.title }}"</strong>?
+            </p>
+            <form method="post" action="">
+                {% csrf_token %}
+                <div class="d-flex justify-content-around">
+                    <input type="submit" value="Yes" class="btn btn-danger">
+                    <a href="{% url 'movielist' %}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

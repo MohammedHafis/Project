@@ -1,0 +1,38 @@
+{% extends 'layout/app-layout.html'%}
+{% block 'content' %}
+<div class="container mt-5">
+
+    <div class="container mt-4 d-flex justify-content-center">
+        <div class="card shadow p-4" style="max-width: 500px; width: 100%; border-radius: 20px;">
+            <div class="card-body text-center">
+                <h2 class="fw-bold text-light mb-1">User Profile</h2><br>
+                <h4 class="fw-bold text-danger mb-2">Username: <span class="text-dark">{{ user.name }}</span></h4>
+                <h4 class="fw-bold text-danger">Email: <span class="text-dark">{{ user.email }}</span></h4>
+            </div>
+        </div>
+    </div>
+    
+<br>
+<div class="card shadow-lg rounded">
+    <div class="card-body">
+        <table class="table table-hover table-bordered align-middle text-center">
+            <thead class="table-dark">
+        <tr>
+            <th>Title</th>
+            <th>Watched At</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in history %}
+        <tr>
+            <td class="display-8 fw-bold text-danger">{{ item.movie.title }}</td>
+            <td>{{ item.date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <table>
+    </div>
+</div>
+</div>
+        {% endblock %}
+

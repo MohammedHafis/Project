@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
+                        url('https://plus.unsplash.com/premium_photo-1661675440353-6a6019c95bc7?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8bW92aWV8ZW58MHx8MHx8fDA%3D');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        .login-card {
+            max-width: 400px;
+            margin: auto;
+            margin-top: 180px;
+            padding: 30px;
+            border-radius: 15px;
+            background-color: rgba(20, 20, 20, 0.9) !important;
+            border: none;
+        }
+        .form-label {
+            color: #fff !important;
+          }
+          .text-dark {
+            color: #fff !important; 
+          }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="login-card">
+        <h3 class="text-center mb-4 text-dark">Login</h3>
+        <form method="post">  
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>  
+                <input type="password" class="form-control" id="password" name="password" required>
+            </div>
+            
+            {% if messages %}
+                {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+            <div class="d-grid mt-3">
+                <button type="submit" class="btn btn-primary">Login</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

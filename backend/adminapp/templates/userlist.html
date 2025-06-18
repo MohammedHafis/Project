@@ -1,0 +1,48 @@
+{% extends 'layout/app-layout.html'%}
+{% block 'content' %}
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="display-5 fw-bold text-dark"> Users Lists</h1>
+        <hr class="w-25 mx-auto">
+    </div>
+    <form method="GET" class="d-flex mb-4" role="search">
+        <input type="text" name="search" class="form-control me-2" 
+               placeholder="Search by name or email" value="{{ search_query }}">
+        <button type="submit" class="btn btn-primary">Search</button>
+        {% if search_query %}
+            <a href="{% url 'userlist' %}" class="btn btn-outline-danger ms-2">Clear</a>
+        {% endif %}
+    </form> 
+<br>
+<div class="card shadow-lg rounded">
+    <div class="card-body">
+        <table class="table table-hover table-bordered align-middle text-center">
+            <thead class="table-dark">
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for user in users %}
+        <tr>
+            <td class="display-10 fw-bold">{{ user.name }}</td>
+            <td class="display-10 fw-bold">{{ user.email }}</td>
+            <td>
+                <a href="{% url 'user_history' user.id %}" class="btn btn-outline-success">History</a> |
+                {% if user.is_active %}
+                    <a href="{% url 'blockuser' user.id %}" class="btn btn-outline-danger">Block</a>
+                {% else %}
+                    <a href="{% url 'unblockuser' user.id %}" class="btn btn-outline-primary">Unblock</a>
+                {% endif %}
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    <table>
+    </div>
+</div>
+</div>
+        {% endblock %}

@@ -1,0 +1,40 @@
+{% extends 'layout/app-layout.html' %}
+{% block 'content' %}
+<div class="container mt-4">
+    <div class="text-center mb-4">
+        <h1 class="mb-4 text-dark">Edit Movie</h1>
+    </div>
+
+    <form method="POST" enctype="multipart/form-data" class="card shadow p-4">
+        {% csrf_token %}
+
+        <div class="mb-2">
+            <label for="title" class="form-label">Title:</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ movie.title }}" required>
+        </div>
+
+        <div class="mb-2">
+            <label for="desc" class="form-label">Description:</label>
+            <textarea class="form-control" id="desc" name="description" rows="3" required>{{ movie.description }}</textarea>
+        </div>
+
+        <div class="mb-2">
+            <label for="thumbnail" class="form-label">Thumbnail:</label>
+            <input type="file" class="form-control" id="thumbnail" name="thumbnail">
+            {% if movie.thumbnail %}
+                <img src="{{ movie.thumbnail.url }}" alt="Current Thumbnail" class="img-fluid mt-2" style="max-height: 150px;">
+            {% endif %}
+        </div>
+
+        <div class="mb-2">
+            <label for="video" class="form-label">Video:</label>
+            <input type="file" class="form-control" id="video" name="video">
+            {% if movie.video %}
+                <p class="mt-2 text-light">Current video: {{ movie.video}}</p>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
+    </form>
+</div>
+{% endblock %}
